@@ -24,7 +24,8 @@ class PersonalityModel(db.Model, BaseMixin):
     def get_personality(user_id: str):
         try:
             type_ = PersonalityModel.get_personality_list(user_id)[0].personality
-            return type_
+            print(type_)
+            return int(type_)
         except IndexError:
             return 8
 
@@ -43,9 +44,9 @@ class AttentionModel(db.Model, BaseMixin):
     attention = db.Column(db.Integer)
     # 0: 먹을거리, 1: 여행, 2: 미용, 3: 연애, 4: 스포츠, 5: 패션, 6: 동물, 7: 인테리어
 
-    def __init__(self, id: str, personality: int):
+    def __init__(self, id: str, attention: int):
         self.id = id
-        self.personality = personality
+        self.attention = attention
 
     @staticmethod
     def get_attention_list(user_id: str):
@@ -55,6 +56,7 @@ class AttentionModel(db.Model, BaseMixin):
     def get_attention(user_id: str):
         try:
             type_ = AttentionModel.get_attention_list(user_id)[0].attention
+            print(type_)
             return type_
         except IndexError:
             return 8
@@ -86,6 +88,7 @@ class CharacterModel(db.Model, BaseMixin):
     def get_character(user_id: str):
         try:
             type_ = CharacterModel.get_character_list(user_id)[0].character
+            print(type_)
             return type_
         except IndexError:
             return 8
