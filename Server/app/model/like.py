@@ -1,11 +1,13 @@
 from app.extension import db
-from app.exception import NoContentException, ResetContentException
 from app.model.mixin import BaseMixin
 from app.model import UserModel
 
 
 class LikeModel(db.Model, BaseMixin):
     __tablename__ = 'like'
+    __table_args__ = (
+        db.PrimaryKeyConstraint('sender', 'receiver'),
+    )
     sender = db.Column(db.String(20), db.ForeignKey('user.id', ondelete='CASCADE'))
     receiver = db.Column(db.String(20), db.ForeignKey('user.id', ondelete='CASCADE'))
 
