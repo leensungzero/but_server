@@ -42,11 +42,6 @@ class UserModel(db.Model, BaseMixin):
 
         UserModel(name, id, pw).save()
 
-        CharacterModel.post_character(id, 8)
-        AttentionModel.post_attention(id, 8)
-        PersonalityModel.post_personality(id, 8)
-        IntroductionModel.post_introduction(id, '')
-
     @staticmethod
     def add_additional(id: str, gender: int, age: int, address: str, intro: str):
         user = UserModel.get_user_by_id(id)
