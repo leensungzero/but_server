@@ -21,7 +21,7 @@ class LikeModel(db.Model, BaseMixin):
 
     @staticmethod
     def get_like_from_others(id: str):
-        return UserModel.query.filter_by(receiver=id).first()
+        return UserModel.query.filter_by(receiver=id).all()
 
     @staticmethod
     def get_like_i_sent(id: str):
