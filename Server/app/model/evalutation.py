@@ -66,6 +66,9 @@ class CharacterModel(db.Model, BaseMixin):
 # 한 줄 소개
 class IntroductionModel(db.Model, BaseMixin):
     __tablename__ = 'introduction'
+    __table_args__ = (
+        db.PrimaryKeyConstraint('id', ),
+    )
     id = db.Column(db.String(20), db.ForeignKey('user.id', ondelete='CASCADE'))
     introduction = db.Column(db.String(50))
 
