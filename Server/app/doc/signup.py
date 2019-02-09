@@ -1,4 +1,4 @@
-from app.doc import parameter
+from app.doc import parameter, JWT_ACCESS_TOKEN
 
 SIGNUP_POST = {
     'tags': ['Account'],
@@ -18,12 +18,12 @@ SIGNUP_POST = {
     }
 }
 
-ADDITIONAL_POST = {
+ADDITIONAL_PATCH = {
     'tags': ['Account'],
     'description': '추가 세부 내용',
     'parameters': [
+        JWT_ACCESS_TOKEN,
         parameter('gender', '이름'),
-        parameter('id', '사용자 아이디'),
         parameter('age', '나이'),
         parameter('address', '주소'),
         parameter('intro', '한 줄 소개'),

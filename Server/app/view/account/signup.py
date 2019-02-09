@@ -1,7 +1,8 @@
 from flask import request, Response
 from flasgger import swag_from
+from flask_jwt_extended import jwt_required, get_jwt_identity
 
-from app.doc.signup import SIGNUP_POST, ADDITIONAL_POST
+from app.doc.signup import SIGNUP_POST, ADDITIONAL_PATCH
 from app.view import BaseResource
 from app.model import UserModel
 from app.util.json_schema import json_type_validate, SIGNUP_POST_JSON, ADDITIONAL_POST_JSON
@@ -21,13 +22,14 @@ class SignupView(BaseResource):
 
 
 class AdditionalView(BaseResource):
+    @jwt_required
     @json_type_validate(ADDITIONAL_POST_JSON)
-    @swag_from(ADDITIONAL_POST)
-    def post(self):
+    @swag_from(ADDITIONAL_PATCH)
+    def patch(self):
         json = request.json
 
         UserModel.add_additional(
-            id=json['id'],
+            id=get_jwt_identity(),
             gender=json['gender'],
             age=json['age'],
             address=json['address'],

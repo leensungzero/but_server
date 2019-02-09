@@ -21,4 +21,5 @@ def json_type_validate(json_schema: dict):
 # Account
 AUTH_POST_JSON = dict(id=str, password=str)
 SIGNUP_POST_JSON = dict(name=str, id=str, password=str)
-ADDITIONAL_POST_JSON = dict(id=str, gende=int, age=int, address=str, intro=str)
+ADDITIONAL_POST_JSON = dict(gender=int, age=int, address=str, intro=str)
+SEARCH_BY_NAME_POST_JSON = dict(name=str)

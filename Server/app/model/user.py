@@ -31,6 +31,10 @@ class UserModel(db.Model, BaseMixin):
         return UserModel.query.filter_by(id=id).first()
 
     @staticmethod
+    def get_user_by_name(name: str):
+        return UserModel.query.filter_by(name=name).all()
+
+    @staticmethod
     def signup(name, id, pw):
         if UserModel.get_user_by_id(id) is not None:
             raise ResetContentException()
@@ -41,7 +45,7 @@ class UserModel(db.Model, BaseMixin):
     def add_additional(id: str, gender: int, age: int, address: str, intro: str):
         user = UserModel.get_user_by_id(id)
         if user is None:
-            raise ResetContentException()
+            raise NoContentException()
 
         user.gender = gender
         user.age = age
@@ -53,7 +57,7 @@ class UserModel(db.Model, BaseMixin):
     @staticmethod
     def login(id: str, pw: str) -> Union[None, 'UserModel']:
         user: UserModel = UserModel.get_user_by_id(id)
-        if not user or not pw is user.pw:
+        if not user or pw != user.pw:
             raise NoContentException()
         return user
 
