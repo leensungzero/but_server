@@ -23,9 +23,9 @@ class AllUserView(BaseResource):
     @jwt_required
     def get(self):
         user_list = UserModel.query.filter_by().all()
-        return jsonify([{
+        return [{
             'user_id': user.id
-        } for user in user_list]), 200
+        } for user in user_list], 200
 
 
 search_api.add_resource(SearchByNameView, '/search/{name}')
