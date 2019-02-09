@@ -33,4 +33,3 @@ class IntroductionView(BaseResource):
         PersonalityModel.post_personality(get_jwt_identity(), type)
 
         return '', 201
-

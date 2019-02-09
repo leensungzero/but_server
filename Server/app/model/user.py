@@ -61,3 +61,13 @@ class UserModel(db.Model, BaseMixin):
             raise NoContentException()
         return user
 
+
+    @staticmethod
+    def get_profile(id: str):
+        user = UserModel.query.filter_by(id=id).first()
+        return {
+            'user_name': user.name,
+            'user_gender': user.gender,
+            'user_age': user.age,
+            'user_intro': user.intro,
+        }
