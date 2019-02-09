@@ -31,6 +31,10 @@ class UserModel(db.Model, BaseMixin):
         return UserModel.query.filter_by(id=id).first()
 
     @staticmethod
+    def get_user_by_name(name: str):
+        return UserModel.query.filter_by(name=name).all()
+
+    @staticmethod
     def signup(name, id, pw):
         if UserModel.get_user_by_id(id) is not None:
             raise ResetContentException()
