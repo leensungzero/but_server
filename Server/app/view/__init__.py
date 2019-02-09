@@ -15,8 +15,6 @@ class ExceptionController:
 
     def __init__(self, flask_app: Flask):
         self.app = flask_app
-        self.handle_exception_func = None
-        self.user_exception_func = None
 
     def __enter__(self):
         self.handle_exception_func = self.app.handle_exception
