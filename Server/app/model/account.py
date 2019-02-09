@@ -16,7 +16,7 @@ class UserModel(db.Model, BaseMixin):
     address = db.Column(db.String(200), nullable=True)
     intro = db.Column(db.String(200), nullable=True)
 
-    def __init__(self, id: str, pw: str, name: str):
+    def __init__(self, name: str, id: str, pw: str):
         self.id = id
         self.pw = bcrypt.hashpw(pw.encode('utf-8'), bcrypt.gensalt()).decode()
         self.name = name
