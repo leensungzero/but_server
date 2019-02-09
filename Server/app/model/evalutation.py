@@ -29,10 +29,6 @@ class PersonalityModel(db.Model, BaseMixin):
             return 8
 
     @staticmethod
-    def get_personality_count(self):
-        list = self.get_personality_list()
-
-    @staticmethod
     def post_personality(id: str, type_: int):
         PersonalityModel(id, type_).save()
 
@@ -47,9 +43,25 @@ class AttentionModel(db.Model, BaseMixin):
     attention = db.Column(db.Integer)
     # 0: 먹을거리, 1: 여행, 2: 미용, 3: 연애, 4: 스포츠, 5: 패션, 6: 동물, 7: 인테리어
 
+    def __init__(self, id: str, personality: int):
+        self.id = id
+        self.personality = personality
+
     @staticmethod
     def get_attention_list(user_id: str):
         return AttentionModel.query.filter_by(id=user_id).all()
+
+    @staticmethod
+    def get_attention(user_id: str):
+        try:
+            type_ = AttentionModel.get_attention_list(user_id)[0].personality
+            return type_
+        except IndexError:
+            return 8
+
+    @staticmethod
+    def post_attention(id: str, type_: int):
+        PersonalityModel(id, type_).save()
 
 
 # 특징
@@ -62,9 +74,25 @@ class CharacterModel(db.Model, BaseMixin):
     character = db.Column(db.Integer)
     # 0: 키가 큼, 1: 키가 작음, 2: 통통함, 3: 마름, 4: 염색함, 5: 염색안함, 6: 안경 씀, 7: 안경안씀
 
+    def __init__(self, id: str, personality: int):
+        self.id = id
+        self.personality = personality
+
     @staticmethod
     def get_character_list(user_id: str):
         return CharacterModel.query.filter_by(id=user_id).all()
+
+    @staticmethod
+    def get_character(user_id: str):
+        try:
+            type_ = CharacterModel.get_character_list(user_id)[0].personality
+            return type_
+        except IndexError:
+            return 8
+
+    @staticmethod
+    def post_character(id: str, type_: int):
+        CharacterModel(id, type_).save()
 
 
 # 한 줄 소개
@@ -75,6 +103,10 @@ class IntroductionModel(db.Model, BaseMixin):
     )
     id = db.Column(db.String(20), db.ForeignKey('user.id', ondelete='CASCADE'))
     introduction = db.Column(db.String(50))
+
+    def __init__(self, id: str, introdution: str):
+        self.id = id
+        self.introduction = introdution
 
     @staticmethod
     def get_introduction_list(user_id: str):
