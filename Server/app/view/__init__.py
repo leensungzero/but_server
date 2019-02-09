@@ -1,4 +1,9 @@
 from flask import Flask
+from flask_restful import Resource
+
+
+class BaseResource(Resource):
+    pass
 
 
 class ExceptionController:
