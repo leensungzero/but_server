@@ -23,7 +23,7 @@ class LikeView(BaseResource):
     def post(self):
         json = request.json
 
-        LikeModel.post_like(get_jwt_identity(), json.get('receiver'))
+        LikeModel.post_like(get_jwt_identity(), json['receiver'])
         return '', 201
 
 
