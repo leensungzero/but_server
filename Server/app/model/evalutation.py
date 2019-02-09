@@ -26,7 +26,7 @@ class PersonalityModel(db.Model, BaseMixin):
             type_ = PersonalityModel.get_personality_list(user_id)[0].personality
             return type_
         except IndexError:
-            return ''
+            return 8
 
     @staticmethod
     def get_personality_count(self):
