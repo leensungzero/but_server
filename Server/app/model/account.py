@@ -11,8 +11,8 @@ class UserModel(db.Model, BaseMixin):
     id = db.Column(db.String(20), primary_key=True)
     pw = db.Column(db.String(20))
     name = db.Column(db.String(20))
-    gender = db.Column(db.Integer(1), nullable=True)
-    age = db.Column(db.Integer(4), nullable=True)
+    gender = db.Column(db.Integer, nullable=True)
+    age = db.Column(db.Integer, nullable=True)
     address = db.Column(db.String(200), nullable=True)
     intro = db.Column(db.String(200), nullable=True)
 
