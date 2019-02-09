@@ -18,6 +18,10 @@ class PersonalityModel(db.Model, BaseMixin):
         return PersonalityModel.query.filter_by(id=user_id).all()
 
     @staticmethod
+    def get_personality(user_id: str):
+        return PersonalityModel.get_personality(user_id)[0].personality
+
+    @staticmethod
     def get_personality_count(self):
         list = self.get_personality_list()
 
