@@ -53,7 +53,7 @@ class UserModel(db.Model, BaseMixin):
     @staticmethod
     def login(id: str, pw: str) -> Union[None, 'UserModel']:
         user: UserModel = UserModel.get_user_by_id(id)
-        if not user or user.pw is not pw:
+        if not user or pw != user.pw:
             raise NoContentException()
         return user
 
