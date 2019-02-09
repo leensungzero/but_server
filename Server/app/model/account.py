@@ -41,7 +41,7 @@ class UserModel(db.Model, BaseMixin):
     def add_additional(id: str, gender: int, age: int, address: str, intro: str):
         user = UserModel.get_user_by_id(id)
         if user is None:
-            raise ResetContentException()
+            raise NoContentException()
 
         user.gender = gender
         user.age = age
