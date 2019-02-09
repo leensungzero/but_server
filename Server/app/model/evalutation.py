@@ -22,7 +22,7 @@ class PersonalityModel(db.Model, BaseMixin):
 
     @staticmethod
     def get_personality(user_id: str):
-        return PersonalityModel.get_personality(user_id)[0].personality
+        return PersonalityModel.get_personality_list(user_id)[0].personality
 
     @staticmethod
     def get_personality_count(self):
