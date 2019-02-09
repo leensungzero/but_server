@@ -1,5 +1,6 @@
 from app.extension import db
 from app.model.mixin import BaseMixin
+from app.model import UserModel
 
 
 # 성격
@@ -8,6 +9,16 @@ class PersonalityModel(db.Model, BaseMixin):
     id = db.Column(db.String(20), db.ForeignKey('user.id', ondelete='CASCADE'))
     personality = db.Column(db.Integer)
     # 0: 불친절함, 1: 친절함, 2: 보통, 3: 최고, 4: 인색함, 5: 털털함, 6: 말수가 적음, 7: 수다스러움
+
+    @staticmethod
+    def get_personality_list(user_id: str):
+        print(PersonalityModel.query.filter_by(id=user_id))
+        return PersonalityModel.query.filter_by(id=user_id)
+
+    @staticmethod
+    def get_personality_count(self):
+        list = self.get_personality_list()
+
 
 
 # 관심사
