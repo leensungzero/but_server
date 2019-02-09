@@ -10,7 +10,7 @@ class PersonalityView(BaseResource):
     def post(self):
         num = request.json['num']
         receiver = request.json['receiver']
-        if PersonalityModel.get_personality(receiver) >= 8:
+        if PersonalityModel.get_personality(receiver) > 8:
             return '', 409
 
         PersonalityModel.post_personality(get_jwt_identity(), receiver, int(num))
@@ -22,7 +22,7 @@ class AttentionView(BaseResource):
     def post(self):
         num = request.json['num']
         receiver = request.json['receiver']
-        if AttentionModel.get_attention(receiver) >= 8:
+        if AttentionModel.get_attention(receiver) > 8:
             return '', 409
 
         AttentionModel.post_attention(get_jwt_identity(), receiver, int(num))
@@ -34,7 +34,7 @@ class CharacterView(BaseResource):
     def post(self):
         num = request.json['num']
         receiver = request.json['receiver']
-        if CharacterModel.get_character(receiver) >= 8:
+        if CharacterModel.get_character(receiver) > 8:
             return '', 409
 
         CharacterModel.post_character(get_jwt_identity(), receiver, int(num))
