@@ -54,14 +54,14 @@ class AttentionModel(db.Model, BaseMixin):
     @staticmethod
     def get_attention(user_id: str):
         try:
-            type_ = AttentionModel.get_attention_list(user_id)[0].personality
+            type_ = AttentionModel.get_attention_list(user_id)[0].attention
             return type_
         except IndexError:
             return 8
 
     @staticmethod
     def post_attention(id: str, type_: int):
-        PersonalityModel(id, type_).save()
+        AttentionModel(id, type_).save()
 
 
 # 특징
@@ -85,7 +85,7 @@ class CharacterModel(db.Model, BaseMixin):
     @staticmethod
     def get_character(user_id: str):
         try:
-            type_ = CharacterModel.get_character_list(user_id)[0].personality
+            type_ = CharacterModel.get_character_list(user_id)[0].character
             return type_
         except IndexError:
             return 8
@@ -104,10 +104,22 @@ class IntroductionModel(db.Model, BaseMixin):
     id = db.Column(db.String(20), db.ForeignKey('user.id', ondelete='CASCADE'))
     introduction = db.Column(db.String(50))
 
-    def __init__(self, id: str, introdution: str):
+    def __init__(self, id: str, introduction: str):
         self.id = id
-        self.introduction = introdution
+        self.introduction = introduction
 
     @staticmethod
     def get_introduction_list(user_id: str):
         return IntroductionModel.query.filter_by(id=user_id).all()
+
+    @staticmethod
+    def get_introduction(user_id: str):
+        try:
+            content = IntroductionModel.get_introduction_list(user_id)[0].content
+            return content
+        except IndexError:
+            return None
+
+    @staticmethod
+    def post_introduction(user_id: str, content):
+        IntroductionModel(user_id, content).save()
