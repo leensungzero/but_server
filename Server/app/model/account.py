@@ -1,4 +1,4 @@
-import bcrypt
+from werkzeug.security import generate_password_hash, check_password_hash
 from typing import Union
 
 from app.extension import db
@@ -9,7 +9,7 @@ from app.model.mixin import BaseMixin
 class UserModel(db.Model, BaseMixin):
     __tablename__ = 'user'
     id = db.Column(db.String(20), primary_key=True)
-    pw = db.Column(db.String(20))
+    pw = db.Column(db.String(100))
     name = db.Column(db.String(20))
     gender = db.Column(db.Integer, nullable=True)
     age = db.Column(db.Integer, nullable=True)
@@ -18,7 +18,7 @@ class UserModel(db.Model, BaseMixin):
 
     def __init__(self, name: str, id: str, pw: str):
         self.id = id
-        self.pw = bcrypt.hashpw(pw.encode('utf-8'), bcrypt.gensalt()).decode()
+        self.pw = generate_password_hash(pw)
         self.name = name
 
     def additional(self, gender: int, age: int, address: str, intro: str):
@@ -54,7 +54,7 @@ class UserModel(db.Model, BaseMixin):
     @staticmethod
     def login(id: str, pw: str) -> Union[None, 'UserModel']:
         user: UserModel = UserModel.get_user_by_id(id)
-        if not user or not bcrypt.checkpw(pw.encode('utf-8'), user.pw.encode('utf-8')):
+        if not user or not check_password_hash(user.pw, pw):
             raise NoContentException()
         return user
 
