@@ -21,10 +21,10 @@ class UserModel(db.Model, BaseMixin):
         self.pw = pw
         self.name = name
 
-        CharacterModel(self.id, 8).save()
-        AttentionModel(self.id, 8).save()
-        PersonalityModel(self.id, 8).save()
-        IntroductionModel(self.id, 8).save()
+        CharacterModel.post_character(self.id, 8)
+        AttentionModel.post_attention(self.id, 8)
+        PersonalityModel.post_personality(self.id, 8)
+        IntroductionModel.post_introduction(self.id, '')
 
     def additional(self, gender: int, age: int, address: str, intro: str):
         self.gender = gender
