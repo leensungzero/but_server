@@ -64,11 +64,11 @@ class CharacterModel(db.Model, BaseMixin):
 
 
 # 한 줄 소개
-class IntroductionModel(db, BaseMixin):
+class IntroductionModel(db.Model, BaseMixin):
     __tablename__ = 'introduction'
     id = db.Column(db.String(20), db.ForeignKey('user.id', ondelete='CASCADE'))
     introduction = db.Column(db.String(50))
 
     @staticmethod
     def get_introduction_list(user_id: str):
-        return Introduction.query.filter_by(id=user_id).all()
+        return IntroductionModel.query.filter_by(id=user_id).all()
