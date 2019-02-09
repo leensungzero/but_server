@@ -7,5 +7,5 @@ from app.model import UserModel
 
 class MyPageView(BaseResource):
     @jwt_required
-    def get(self, id):
-        return UserModel.get_profile(id)
+    def post(self):
+        return UserModel.get_profile(request.json['id'])
