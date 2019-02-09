@@ -9,10 +9,11 @@ class PersonalityView(BaseResource):
     @jwt_required
     def post(self):
         num = request.json['num']
-        if PersonalityModel.get_personality(get_jwt_identity()) != 8:
+        receiver = request.json['receiver']
+        if PersonalityModel.get_personality(receiver) != 8:
             return '', 409
 
-        PersonalityModel.post_personality(get_jwt_identity(), int(num))
+        PersonalityModel.post_personality(get_jwt_identity(), receiver, int(num))
         return '', 201
 
 
@@ -20,10 +21,11 @@ class AttentionView(BaseResource):
     @jwt_required
     def post(self):
         num = request.json['num']
-        if AttentionModel.get_attention(get_jwt_identity()) != 8:
+        receiver = request.json['receiver']
+        if AttentionModel.get_attention(receiver) != 8:
             return '', 409
 
-        AttentionModel.post_attention(get_jwt_identity(), int(num))
+        AttentionModel.post_attention(get_jwt_identity(), receiver, int(num))
         return '', 201
 
 
@@ -31,10 +33,11 @@ class CharacterView(BaseResource):
     @jwt_required
     def post(self):
         num = request.json['num']
-        if CharacterModel.get_character(get_jwt_identity()) != 8:
+        receiver = request.json['receiver']
+        if CharacterModel.get_character(receiver) != 8:
             return '', 409
 
-        CharacterModel.post_character(get_jwt_identity(), int(num))
+        CharacterModel.post_character(get_jwt_identity(), receiver, int(num))
         return '', 201
 
 
@@ -42,8 +45,9 @@ class IntroductionView(BaseResource):
     @jwt_required
     def post(self):
         content = request.json['content']
-        if IntroductionModel.get_introduction(get_jwt_identity()):
+        receiver = request.json['receiver']
+        if IntroductionModel.get_introduction(receiver):
             return '', 409
 
-        IntroductionModel.post_introdution(get_jwt_identity(), content)
+        IntroductionModel.post_introdution(get_jwt_identity(), receiver, content)
         return '', 201
