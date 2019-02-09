@@ -6,9 +6,9 @@ from app.model.evaluation import PersonalityModel, AttentionModel, CharacterMode
 
 
 class PersonalityView(BaseResource):
-    def get(self):
-        personality_list = PersonalityModel.get_personality_list
-        return jsonify([personality for personality in personality_list]), 200
+    @jwt_required
+    def post(self, type_):
+        PersonalityModel.post_personality(get_jwt_identity(), type_)
 
 
 class AttentionView(BaseResource):

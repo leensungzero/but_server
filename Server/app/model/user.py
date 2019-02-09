@@ -3,6 +3,7 @@ from typing import Union
 from app.extension import db
 from app.exception import NoContentException, ResetContentException
 from app.model.mixin import BaseMixin
+from app.model import CharacterModel, AttentionModel, PersonalityModel
 
 
 class UserModel(db.Model, BaseMixin):
@@ -65,6 +66,8 @@ class UserModel(db.Model, BaseMixin):
     @staticmethod
     def get_profile(id: str):
         user = UserModel.query.filter_by(id=id).first()
+
+        CharacterModel.get_character_list(id)[]
         return {
             'user_name': user.name,
             'user_gender': user.gender,
