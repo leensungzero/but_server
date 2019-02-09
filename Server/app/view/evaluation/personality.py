@@ -7,8 +7,9 @@ from app.model.evaluation import PersonalityModel, AttentionModel, CharacterMode
 
 class PersonalityView(BaseResource):
     @jwt_required
-    def post(self, type_):
-        PersonalityModel.post_personality(get_jwt_identity(), type_)
+    def post(self, num):
+        PersonalityModel.post_personality(get_jwt_identity(), num)
+        return '', 201
 
 
 class AttentionView(BaseResource):

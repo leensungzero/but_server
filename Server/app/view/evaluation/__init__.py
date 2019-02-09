@@ -5,5 +5,5 @@ evaluation_blueprint = Blueprint('evaluation', __name__, url_prefix='/eval')
 evaluation_api = Api(evaluation_blueprint)
 
 from .personality import PersonalityView
-evaluation_api.add_resource(PersonalityView, '/personality/{type_}')
+evaluation_api.add_resource(PersonalityView, '/personality/{num}')
 
