@@ -25,7 +25,7 @@ class Config:
         'basePath': '/',
     }
 
-    SECRET_KEY = os.getenv('SECRET_KEY', '')
+    SECRET_KEY = os.getenv('SECRET_KEY', '%nzht7dv+8bkxoe_u(7+-q_pwyb-#r%)z790si+1lh2!x4-fta')
 
     SWAGGER_TEMPLATE = {
         'schemes': [
@@ -35,7 +35,7 @@ class Config:
 
     SQLALCHEMY_TRACK_MODIFICATIONS = True
     SQLALCHEMY_DATABASE_URI = \
-        'mysql://{user}:{pw}@{host}/{db_name}'.format(
+        'mysql+pymysql://{user}:{pw}@{host}/{db_name}'.format(
             user=MYSQL_SET['user'],
             pw=MYSQL_SET['pw'],
             host=MYSQL_SET['host'],

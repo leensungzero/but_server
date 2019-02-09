@@ -10,8 +10,14 @@ def json_type_validate(json_schema: dict):
             for key, type_ in json_schema.items():
                 value = request.json.get(key)
                 if type(value) is not type_:
-                    raise BadRequestException()
+                    break
             else:
                 return fn(*args, **kwargs)
+            raise BadRequestException()
         return wrapper
     return decorator
+
+
+# Account
+AUTH_POST_JSON = dict(id=str, password=str)
+SIGNUP_POST_JSON = dict(name=str, id=str, password=str)
