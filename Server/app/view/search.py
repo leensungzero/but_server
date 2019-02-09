@@ -35,8 +35,9 @@ class AllUserView(BaseResource):
         character = character_type[CharacterModel.get_character(get_jwt_identity())]
 
         return [{
+            'user_id': user.id,
             'user_name': user.name,
-            'tag': [personality, attention, character],
+            'tag': [personality, attention, character]
         } for user in user_list], 200
 
 

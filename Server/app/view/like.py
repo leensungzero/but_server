@@ -14,7 +14,10 @@ class LikeView(BaseResource):
     @jwt_required
     def get(self):
         like_list = LikeModel.get_like_from_others(get_jwt_identity())
-        return [user for user in like_list], 200
+        return [{
+            'user_id': user.id,
+            'user_name': user.name
+        } for user in like_list], 200
 
     @jwt_required
     def post(self):
