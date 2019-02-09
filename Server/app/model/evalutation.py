@@ -22,11 +22,11 @@ class PersonalityModel(db.Model, BaseMixin):
 
     @staticmethod
     def get_personality(user_id: str):
-        type_ = PersonalityModel.get_personality_list(user_id)[0].personality
-        if not type_:
+        try:
+            type_ = PersonalityModel.get_personality_list(user_id)[0].personality
+            return type_
+        except IndexError:
             return ''
-
-        return type_
 
     @staticmethod
     def get_personality_count(self):
