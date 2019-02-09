@@ -1,5 +1,6 @@
 from app.view import BaseResource
 from flask import request, jsonify
+from flask_jwt_extended import jwt_required, get_jwt_identity
 
 from app.model.evalutation import PersonalityModel, AttentionModel, CharacterModel, IntroductionModel
 
@@ -26,3 +27,10 @@ class IntroductionView(BaseResource):
     def get(self):
         introduction_list = IntroductionModel.get_introduction_list
         return jsonify([introduction for introduction in introduction_list]), 200
+
+    @jwt_required
+    def post(self, type):
+        PersonalityModel.post_personality(get_jwt_identity(), type)
+
+        return '', 201
+
