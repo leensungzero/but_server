@@ -31,8 +31,8 @@ class AllUserView(BaseResource):
         user_list = UserModel.query.filter_by().all()
 
         personality = personality_type[PersonalityModel.get_personality(get_jwt_identity())]
-        attention = attention_type[AttentionModel.get_personality(get_jwt_identity())]
-        character = character_type[CharacterModel.get_personality(get_jwt_identity())]
+        attention = attention_type[AttentionModel.get_attention(get_jwt_identity())]
+        character = character_type[CharacterModel.get_character(get_jwt_identity())]
 
         return [{
             'user_name': user.name,
