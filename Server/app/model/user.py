@@ -21,11 +21,6 @@ class UserModel(db.Model, BaseMixin):
         self.pw = pw
         self.name = name
 
-        CharacterModel.post_character(self.id, 8)
-        AttentionModel.post_attention(self.id, 8)
-        PersonalityModel.post_personality(self.id, 8)
-        IntroductionModel.post_introduction(self.id, '')
-
     def additional(self, gender: int, age: int, address: str, intro: str):
         self.gender = gender
         self.age = age
@@ -46,6 +41,11 @@ class UserModel(db.Model, BaseMixin):
             raise ResetContentException()
 
         UserModel(name, id, pw).save()
+
+        CharacterModel.post_character(id, 8)
+        AttentionModel.post_attention(id, 8)
+        PersonalityModel.post_personality(id, 8)
+        IntroductionModel.post_introduction(id, '')
 
     @staticmethod
     def add_additional(id: str, gender: int, age: int, address: str, intro: str):
