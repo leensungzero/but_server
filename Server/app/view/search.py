@@ -30,14 +30,14 @@ class AllUserView(BaseResource):
     def get(self):
         user_list = UserModel.query.filter_by().all()
 
-        personality = personality_type[PersonalityModel.get_personality(get_jwt_identity())]
-        attention = attention_type[AttentionModel.get_attention(get_jwt_identity())]
-        character = character_type[CharacterModel.get_character(get_jwt_identity())]
-
         return [{
             'user_id': user.id,
             'user_name': user.name,
-            'tag': [personality, attention, character]
+            'tag': [
+                personality_type[PersonalityModel.get_personality(get_jwt_identity())],
+                attention_type[AttentionModel.get_attention(get_jwt_identity())],
+                character_type[CharacterModel.get_character(get_jwt_identity())]
+            ]
         } for user in user_list], 200
 
 
