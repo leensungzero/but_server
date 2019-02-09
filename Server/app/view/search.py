@@ -3,7 +3,7 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 
 from app.view import BaseResource
 from app.model import UserModel
-from app.util.json_schema import json_type_validate, SIGNUP_POST_JSON, ADDITIONAL_POST_JSON
+from app.util.json_schema import json_type_validate, SEARCH_BY_NAME_POST_JSON
 
 
 class SearchByNameView(BaseResource):
