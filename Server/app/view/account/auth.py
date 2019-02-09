@@ -17,9 +17,7 @@ class AuthView(BaseResource):
         access_token = create_access_token(student.id, expires_delta=timedelta(days=2))
         refresh_token = create_refresh_token(student.id, expires_delta=timedelta(days=30))
 
-        return jsonify(
-            {
-                'accessToken': access_token,
-                'refreshToken': refresh_token
-            }
-        )
+        return {
+            'accessToken': access_token,
+            'refreshToken': refresh_token
+        }

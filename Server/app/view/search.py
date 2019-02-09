@@ -16,7 +16,10 @@ class SearchByNameView(BaseResource):
     @json_type_validate(SEARCH_BY_NAME_POST_JSON)
     def get(self, name):
         user_list: list = UserModel.get_user_by_name(name)
-        return jsonify([user for user in user_list]), 200
+        return [{
+            'user_name': user.name,
+            'user_id': user.id
+        } for user in user_list], 200
 
 
 class AllUserView(BaseResource):
@@ -24,7 +27,7 @@ class AllUserView(BaseResource):
     def get(self):
         user_list = UserModel.query.filter_by().all()
         return [{
-            'user_id': user.id
+            'user_name': user.name
         } for user in user_list], 200
 
 
