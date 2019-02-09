@@ -12,4 +12,4 @@ account_api.add_resource(SignupView, '/signup')
 account_api.add_resource(AdditionalView, '/additional')
 
 from .mypage import MyPageView
-account_api.add_resource(MyPageView, '/mypage/{id}')
+account_api.add_resource(MyPageView, '/mypage')
