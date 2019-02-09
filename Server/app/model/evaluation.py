@@ -26,7 +26,6 @@ class PersonalityModel(db.Model, BaseMixin):
     def get_personality(user_id: str):
         try:
             type_ = PersonalityModel.get_personality_list(user_id)[0].personality
-            print(type_)
             return int(type_)
         except IndexError:
             return 8
@@ -60,7 +59,6 @@ class AttentionModel(db.Model, BaseMixin):
     def get_attention(user_id: str):
         try:
             type_ = AttentionModel.get_attention_list(user_id)[0].attention
-            print(type_)
             return type_
         except IndexError:
             return 8
