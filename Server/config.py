@@ -42,9 +42,6 @@ class Config:
             db_name=MYSQL_SET['db_name']
         )
 
-    JWT_ACCESS_TOKEN_EXPIRES = timedelta(days=30)
-    JWT_REFRESH_TOKEN_EXPIRES = timedelta(days=365)
-
 
 class DevelopmentConfig(Config):
     pass
