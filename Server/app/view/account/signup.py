@@ -1,7 +1,7 @@
 from flask import request, Response
-# from flasgger import swag_from
+from flasgger import swag_from
 
-# from app.doc.account.auth import SIGNUP_POST
+from app.doc.signup import SIGNUP_POST, ADDITIONAL_POST
 from app.view import BaseResource
 from app.model import UserModel
 from app.util.json_schema import json_type_validate, SIGNUP_POST_JSON, ADDITIONAL_POST_JSON
@@ -9,7 +9,7 @@ from app.util.json_schema import json_type_validate, SIGNUP_POST_JSON, ADDITIONA
 
 class SignupView(BaseResource):
     @json_type_validate(SIGNUP_POST_JSON)
-    # @swag_from(SIGNUP_POST)
+    @swag_from(SIGNUP_POST)
     def post(self):
         name = request.json['name']
         id = request.json['id']
@@ -22,6 +22,7 @@ class SignupView(BaseResource):
 
 class AdditionalView(BaseResource):
     @json_type_validate(ADDITIONAL_POST_JSON)
+    @swag_from(ADDITIONAL_POST)
     def post(self):
         json = request.json
 
