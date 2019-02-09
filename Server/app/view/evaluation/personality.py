@@ -2,7 +2,7 @@ from app.view import BaseResource
 from flask import request, jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity
 
-from app.model.evalutation import PersonalityModel, AttentionModel, CharacterModel, IntroductionModel
+from app.model.evaluation import PersonalityModel, AttentionModel, CharacterModel, IntroductionModel
 
 
 class PersonalityView(BaseResource):
