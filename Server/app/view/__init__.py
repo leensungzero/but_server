@@ -33,3 +33,5 @@ def route(flask_app: Flask):
         flask_app.register_blueprint(account_blueprint)
         from .like import like_blueprint
         flask_app.register_blueprint(like_blueprint)
+        from .search import search_blueprint
+        flask_app.register_blueprint(search_blueprint)
