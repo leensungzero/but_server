@@ -3,7 +3,7 @@ from typing import Union
 from app.extension import db
 from app.exception import NoContentException, ResetContentException
 from app.model.mixin import BaseMixin
-# from app.model import CharacterModel, AttentionModel, PersonalityModel
+from app.model import CharacterModel, AttentionModel, PersonalityModel
 
 
 class UserModel(db.Model, BaseMixin):
@@ -20,6 +20,10 @@ class UserModel(db.Model, BaseMixin):
         self.id = id
         self.pw = pw
         self.name = name
+
+        CharacterModel(self.id, 8).save()
+        AttentionModel(self.id, 8).save()
+        PersonalityModel(self.id, 8).save()
 
     def additional(self, gender: int, age: int, address: str, intro: str):
         self.gender = gender
