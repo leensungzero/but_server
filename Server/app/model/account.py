@@ -8,13 +8,13 @@ from app.model.mixin import BaseMixin
 
 class UserModel(db.Model, BaseMixin):
     __tablename__ = 'user'
-    id = db.Column(db.String, primary_key=True)
-    pw = db.Column(db.String)
-    name = db.Column(db.String)
-    gender = db.Column(db.String, nullable=True)
-    age = db.Column(db.Integer, nullable=True)
-    address = db.Column(db.String, nullable=True)
-    intro = db.Column(db.String, nullable=True)
+    id = db.Column(db.String(20), primary_key=True)
+    pw = db.Column(db.String(20))
+    name = db.Column(db.String(20))
+    gender = db.Column(db.Integer(1), nullable=True)
+    age = db.Column(db.Integer(4), nullable=True)
+    address = db.Column(db.String(200), nullable=True)
+    intro = db.Column(db.String(200), nullable=True)
 
     def __init__(self, id: str, pw: str, name: str):
         self.id = id
