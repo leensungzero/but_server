@@ -18,7 +18,7 @@ class UserModel(db.Model, BaseMixin):
 
     def __init__(self, name: str, id: str, pw: str):
         self.id = id
-        self.pw = generate_password_hash(pw)
+        self.pw = generate_password_hash(pw, method='pbkdf2:sha256')
         self.name = name
 
     def additional(self, gender: int, age: int, address: str, intro: str):
