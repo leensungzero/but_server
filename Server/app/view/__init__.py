@@ -35,5 +35,5 @@ def route(flask_app: Flask):
         flask_app.register_blueprint(like_blueprint)
         from .search import search_blueprint
         flask_app.register_blueprint(search_blueprint)
-        from .evalutation import evaluation_blueprint
+        from .evaluation import evaluation_blueprint
         flask_app.register_blueprint(evaluation_blueprint)
