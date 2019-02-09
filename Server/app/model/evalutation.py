@@ -6,7 +6,7 @@ from app.model.mixin import BaseMixin
 class PersonalityModel(db.Model, BaseMixin):
     _tablename_ = 'personality'
     __table_args__ = (
-        db.PrimaryKeyConstraint('id'),
+        db.PrimaryKeyConstraint('id')
     )
     id = db.Column(db.String(20), db.ForeignKey('user.id', ondelete='CASCADE'))
     personality = db.Column(db.Integer)
@@ -36,6 +36,9 @@ class PersonalityModel(db.Model, BaseMixin):
 # 관심사
 class AttentionModel(db.Model, BaseMixin):
     _tablename_ = 'attention'
+    __table_args__ = (
+        db.PrimaryKeyConstraint('id')
+    )
     id = db.Column(db.String(20), db.ForeignKey('user.id', ondelete='CASCADE'))
     attention = db.Column(db.Integer)
     # 0: 먹을거리, 1: 여행, 2: 미용, 3: 연애, 4: 스포츠, 5: 패션, 6: 동물, 7: 인테리어
@@ -44,6 +47,9 @@ class AttentionModel(db.Model, BaseMixin):
 # 특징
 class CharacterModel(db.Model, BaseMixin):
     _tablename_ = 'character'
+    __table_args__ = (
+        db.PrimaryKeyConstraint('id')
+    )
     id = db.Column(db.String(20), db.ForeignKey('user.id', ondelete='CASCADE'))
     character = db.Column(db.Integer)
     # 0: 키가 큼, 1: 키가 작음, 2: 통통함, 3: 마름, 4: 염색함, 5: 염색안함, 6: 안경 씀, 7: 안경안씀
