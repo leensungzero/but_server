@@ -31,3 +31,5 @@ def route(flask_app: Flask):
     with ExceptionController(flask_app):
         from .account import account_blueprint
         flask_app.register_blueprint(account_blueprint)
+        from .like import like_blueprint
+        flask_app.register_blueprint(like_blueprint)
