@@ -18,7 +18,7 @@ SIGNUP_POST = {
     }
 }
 
-ADDITIONAL_POST = {
+ADDITIONAL_PATCH = {
     'tags': ['Account'],
     'description': '추가 세부 내용',
     'parameters': [
