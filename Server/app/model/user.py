@@ -70,6 +70,8 @@ class UserModel(db.Model, BaseMixin):
     @staticmethod
     def get_profile(id: str):
         user = UserModel.query.filter_by(id=id).first()
+        if not user:
+            raise NoContentException()
 
         character_list = CharacterModel.get_character_list(id)
         personality_list = PersonalityModel.get_personality_list(id)
