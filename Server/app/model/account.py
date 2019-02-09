@@ -1,4 +1,3 @@
-from werkzeug.security import generate_password_hash, check_password_hash
 from typing import Union
 
 from app.extension import db
@@ -18,7 +17,7 @@ class UserModel(db.Model, BaseMixin):
 
     def __init__(self, name: str, id: str, pw: str):
         self.id = id
-        self.pw = generate_password_hash(pw, method='pbkdf2:sha256')
+        self.pw = pw
         self.name = name
 
     def additional(self, gender: int, age: int, address: str, intro: str):
@@ -54,7 +53,7 @@ class UserModel(db.Model, BaseMixin):
     @staticmethod
     def login(id: str, pw: str) -> Union[None, 'UserModel']:
         user: UserModel = UserModel.get_user_by_id(id)
-        if not user or not check_password_hash(user.pw, pw):
+        if not user or not pw is user.pw:
             raise NoContentException()
         return user
 
